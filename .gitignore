@@ -1,0 +1,22 @@
+# Input data are not tracked (see data/README.md)
+data/*
+!data/README.md
+
+# Large or regenerated analysis outputs
+analysis/results/ref_score_table_evaluable.csv.gz
+analysis/results/ref_score_summary_evaluable.csv
+analysis/results/verify_ref_table_report.txt
+
+# Cluster logs
+logs/
+*.out
+*.err
+
+# Python / Jupyter / OS
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+
+# PNG copies of the figures are regenerated locally; only the PDFs are tracked
+figure/*/results/*.png
