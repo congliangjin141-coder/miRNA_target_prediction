@@ -20,3 +20,4 @@ __pycache__/
 
 # PNG copies of the figures are regenerated locally; only the PDFs are tracked
 figure/*/results/*.png
+figure/*/results/*.pdf
