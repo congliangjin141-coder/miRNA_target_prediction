@@ -20,13 +20,16 @@ If you use this code, please cite our paper:
 
 ## Overview
 
-This study benchmarks seven widely used miRNA target prediction tools (TargetScan, miRDB,
-miRmap, DIANA-microT, RNA22, miRWalk and mirDIP) against a graded reference. Every candidate
-miRNA-gene pair receives a reference score from 0 to 3, one point each for support in
-miRTarBase, in TarBase and in an internal iPSC miRNA-mRNA expression dataset. Each tool's
-predictions are compared with the reference through a confusion matrix over all
-59,734,204 candidate pairs, giving the Type I error rate, power and false discovery
-proportion as the reference evidence and the tool's prediction threshold vary.
+We benchmarked seven widely used miRNA target prediction tools (TargetScan, miRDB, miRmap,
+DIANA-microT, RNA22, miRWalk and mirDIP) on 59,734,204 candidate miRNA–mRNA pairs. Each pair
+was assigned an evidence-graded reference score (0–3) integrating experimentally validated
+interactions from two external databases (miRTarBase and TarBase) with expression-derived
+evidence from paired miRNA-seq and mRNA-seq profiles of an internal induced pluripotent stem
+cell (iPSC) cohort comprising 22q11.2 deletion syndrome and control lines. Performance was
+assessed by Type I error rate, statistical power and false discovery proportion (FDP).
+Robustness was examined by increasing the stringency of the reference-score cutoff (truth
+signal) and by progressively admitting lower-confidence predictions (model signal). Optimal
+score cutoffs were selected by maximizing Youden's J statistic.
 
 ![Study design](figure/Fig1/Fig1.png)
 
