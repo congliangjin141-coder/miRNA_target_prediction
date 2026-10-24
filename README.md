@@ -20,8 +20,8 @@ If you use this code, please cite our paper:
 
 ## Overview
 
-This study benchmarks seven widely used miRNA target prediction tools (DIANA-microT, miRDB,
-mirDIP, miRmap, miRWalk, RNA22 and TargetScan) against a graded reference. Every candidate
+This study benchmarks seven widely used miRNA target prediction tools (TargetScan, miRDB,
+miRmap, DIANA-microT, RNA22, miRWalk and mirDIP) against a graded reference. Every candidate
 miRNA-gene pair receives a reference score from 0 to 3, one point each for support in
 miRTarBase, in TarBase and in an internal iPSC miRNA-mRNA expression dataset. Each tool's
 predictions are compared with the reference through a confusion matrix over all
@@ -60,7 +60,7 @@ Each script starts with a header that lists its inputs, outputs and prerequisite
 | miRTarBase | miRTarBase 2025 (`hsa_MTI.csv`) | Cui S. et al., *Nucleic Acids Res.* 53(D1):D147–D156, 2025 |
 | TarBase | TarBase v9.0 (`Homo_sapiens_TarBase-v9.tsv`) | Skoufos G. et al., *Nucleic Acids Res.* 52(D1):D304–D310, 2024 |
 | iPSC dataset | internal bulk RNA-seq and mature miRNA counts, 10 donors × 2 replicates | this study; not included in the repository |
-| Prediction tools | TargetScan v8.0, miRDB v6.0, mirDIP v5.2, DIANA-microT, miRmap, miRWalk, RNA22 | see `data/README.md` |
+| Prediction tools | TargetScan v8.0, miRDB v6.0, miRmap, DIANA-microT, RNA22, miRWalk, mirDIP v5.2 | see `data/README.md` |
 
 The input data are not tracked. `data/README.md` lists every file, its columns and where it is placed.
 
@@ -107,7 +107,7 @@ rows of `analysis/results/refscore_best_cutoff.csv`.
 * **Truth** at cutoff c: reference score ≥ c. Score-0 pairs are negatives at every cutoff.
 * **Prediction**: the top X% of a tool's own ranked predictions, ties at the threshold included;
   pairs a tool does not score count as not predicted. When a tool lists several rows for one
-  pair, the strongest score is kept (minimum for TargetScan, RNA22 and miRmap, maximum otherwise).
+  pair, the strongest score is kept (minimum for TargetScan, miRmap and RNA22, maximum otherwise).
 * **Metrics**: Type I error = FP / (FP + TN); power = 1 − Type II error = TP / (TP + FN);
   FDP = FP / (TP + FP); Youden's J = sensitivity + specificity − 1.
 * **Baselines**: Type I error 0.05; power 0.80; FDP 0.96 (the FDP of random predictions, i.e. the

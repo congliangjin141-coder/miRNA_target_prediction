@@ -35,6 +35,8 @@ OUT_DIR = 'figure/Fig4/results'
 TOOLS   = ['DIANA-microT', 'miRDB', 'mirDIP', 'miRmap', 'miRWalk', 'RNA22', 'TargetScan']
 COLORS  = ['#E07B39', '#E8C030', '#7B5EA7', '#C94040', '#2AADAD', '#6AAF3D', '#A0345A']
 MARKERS = ['o', 's', '^', 'D', 'v', '*', 'P']
+# legend order: tools by number of predicted pairs, fewest to most (as in Fig. 2C)
+LEGEND_ORDER = ['TargetScan', 'miRDB', 'miRmap', 'DIANA-microT', 'RNA22', 'miRWalk', 'mirDIP']
 PCTS    = list(range(10, 101, 10))
 TRUTH_CUTOFF   = 1
 WEAK_TO_STRONG = [1, 2, 3]
@@ -115,6 +117,7 @@ def make_figure(panels, widths, out, letters='ABCDEFG'):
         ax.text(-0.2, 1.03, letter, transform=ax.transAxes, fontsize=LETTER_FS, fontweight='bold',
                 va='bottom', ha='left')
     handles, labels = axes[0].get_legend_handles_labels()
+    handles = [handles[labels.index(t)] for t in LEGEND_ORDER]; labels = LEGEND_ORDER
     fig.legend(handles, labels, loc='lower center', ncol=4, fontsize=LEGEND_FS, frameon=False,
                handlelength=2.0, handletextpad=0.5, columnspacing=1.4, bbox_to_anchor=(0.5, 0.0))
     fig.tight_layout(rect=(0, 0.15, 1, 1), w_pad=1.5)

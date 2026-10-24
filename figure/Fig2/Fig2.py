@@ -285,7 +285,10 @@ def load_curve_data():
 def draw_curve(fig, subspec, cum_data):
     inner = GridSpecFromSubplotSpec(2, 1, subplot_spec=subspec, height_ratios=[10, 1.0], hspace=0)
     ax = fig.add_subplot(inner[0, 0])
-    for i, name in enumerate(DISPLAY_NAMES):
+    # tools in the same order as panel C (fewest to most predicted pairs); colour, marker
+    # and drawing layer stay with each tool
+    for name in c_tools:
+        i = DISPLAY_NAMES.index(name)
         cd = cum_data[name]
         ax.plot(cd['genes'], cd['mirna'], color=CURVE_COLORS[i],
                 marker=CURVE_MARKERS[i], linewidth=1.8, markersize=5,
@@ -345,15 +348,28 @@ draw_bars_panel(
 
 draw_venn(fig, outer[0, 1])
 
+# Panel C: tools ordered by the number of predicted pairs, fewest to most
+PANEL_C = [  # tool, colour, edge colour, pairs, miRNAs, genes
+    ('DIANA-microT', '#E07B39', '#A04A10', 24_787_164, 2654, 19404),
+    ('miRDB',        '#E8C030', '#B08000', 1_607_873,  2656, 17454),
+    ('mirDIP',       '#7B5EA7', '#4A3070', 45_783_772, 2656, 27936),
+    ('miRmap',       '#C94040', '#8A1010', 16_783_062, 2656, 18909),
+    ('miRWalk',      '#2AADAD', '#107070', 31_807_243, 2656, 19342),
+    ('RNA22',        '#6AAF3D', '#3A7010', 30_435_856, 2588, 18669),
+    ('TargetScan',   '#A0345A', '#601030', 202_584,    321,  13035),
+]
+PANEL_C.sort(key=lambda row: row[3])
+c_tools, c_colors, c_edges, c_pairs, c_mirnas, c_genes = (list(col) for col in zip(*PANEL_C))
+
 draw_bars_panel(
     fig, outer[1, 0],
-    labels=['DIANA-microT', 'miRDB', 'mirDIP', 'miRmap', 'miRWalk', 'RNA22', 'TargetScan'],
-    leg_labels=['DIANA-microT', 'miRDB', 'mirDIP', 'miRmap', 'miRWalk', 'RNA22', 'TargetScan'],
-    colors=['#E07B39', '#E8C030', '#7B5EA7', '#C94040', '#2AADAD', '#6AAF3D', '#A0345A'],
-    edges=['#A04A10', '#B08000', '#4A3070', '#8A1010', '#107070', '#3A7010', '#601030'],
-    pairs=[24_787_164, 1_607_873, 45_783_772, 16_783_062, 31_807_243, 30_435_856, 202_584],
-    mirnas=[2654, 2656, 2656, 2656, 2656, 2588, 321],
-    genes=[19404, 17454, 27936, 18909, 19342, 18669, 13035],
+    labels=c_tools,
+    leg_labels=c_tools,
+    colors=c_colors,
+    edges=c_edges,
+    pairs=c_pairs,
+    mirnas=c_mirnas,
+    genes=c_genes,
     pairs_ylim=(1e5, 2e8), pairs_yticks=[1e5, 1e6, 1e7, 1e8],
     mir_ylim=(0, 3600), mir_yticks=[0, 1000, 2000, 3000],
     mir_yticklab=['0', '1,000', '2,000', '3,000'],

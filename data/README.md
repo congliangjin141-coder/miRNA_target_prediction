@@ -30,13 +30,14 @@ data/
 ## `data/predictions/`
 
 Each file needs the columns `mirna_name`, `gene_name` and `score`; other columns are ignored.
+Tools are listed by the number of predicted pairs, fewest to most.
 
 | File | Tool | Stronger prediction |
 |------|------|---------------------|
 | `TargetScan v8.0.csv` | TargetScan v8.0 | lower score |
-| `rna22.csv` | RNA22 | lower score |
+| `miRDB v6.0.csv` | miRDB v6.0 | higher score |
 | `mirmap.csv` | miRmap | lower score |
 | `diana_microT.csv` | DIANA-microT | higher score |
-| `miRDB v6.0.csv` | miRDB v6.0 | higher score |
-| `mirDIP v5.2.csv` | mirDIP v5.2 | higher score |
+| `rna22.csv` | RNA22 | lower score |
 | `mirwalk.csv` | miRWalk | higher score |
+| `mirDIP v5.2.csv` | mirDIP v5.2 | higher score |
