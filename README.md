@@ -28,6 +28,10 @@ predictions are compared with the reference through a confusion matrix over all
 59,734,204 candidate pairs, giving the Type I error rate, power and false discovery
 proportion as the reference evidence and the tool's prediction threshold vary.
 
+![Study design](figure/Fig1/Fig1.png)
+
+*Figure 1. Study design.*
+
 ## Repo Contents
 
 ```
@@ -39,10 +43,9 @@ proportion as the reference evidence and the tool's prediction threshold vary.
 │   │   └── verify_ref_table.py                # Independent check of step 02
 │   └── results/                               # refscore_metrics.csv, refscore_best_cutoff.csv
 ├── figure/                                    # Figure scripts and outputs
-│   └── Fig2/ – Fig5/                          # FigN.py and results/
+│   ├── Fig1/                                  # Study design (Fig1.png)
+│   └── Fig2/ – Fig5/                          # FigN.py and results/figN.pdf
 ├── data/                                      # Input files (not tracked; see data/README.md)
-├── hpc/
-│   └── run_python.sbatch                      # SLURM template for the memory-heavy steps
 ├── requirements.txt
 └── LICENSE
 ```
@@ -73,12 +76,7 @@ The `analysis/` directory builds the reference and evaluates the tools.
 | `checks/verify_ref_table.py` | Recomputes every column of the reference table from the input files with independent code and compares pair by pair |
 
 Run scripts in numbered order (`01` → `02` → `03`).
-All three steps and the check need a large-memory node (about 64 GB); on a SLURM cluster:
-
-```bash
-mkdir -p logs
-sbatch hpc/run_python.sbatch analysis/02_build_ref_score_table.py
-```
+All three steps and the check need about 64 GB of memory; they were run on a SLURM compute node.
 
 ### Reference counts
 
@@ -98,12 +96,11 @@ rows of `analysis/results/refscore_best_cutoff.csv`.
 
 ### Main Figures
 
-- **[Figure 2: Reference datasets and tool coverage](figure/Fig2/Fig2.py)**
-- **[Figure 3: Type I error rate](figure/Fig3/Fig3.py)**
-- **[Figure 4: Power](figure/Fig4/Fig4.py)**
-- **[Figure 5: False discovery proportion](figure/Fig5/Fig5.py)**
-
-Figure 1 (study design) was drawn by hand and is not produced by this code.
+- **[Figure 1: Study design](figure/Fig1/Fig1.png)**
+- **[Figure 2: Reference datasets and tool coverage](figure/Fig2/results/fig2.pdf)** (code: [Fig2.py](figure/Fig2/Fig2.py))
+- **[Figure 3: Type I error rate](figure/Fig3/results/fig3.pdf)** (code: [Fig3.py](figure/Fig3/Fig3.py))
+- **[Figure 4: Power](figure/Fig4/results/fig4.pdf)** (code: [Fig4.py](figure/Fig4/Fig4.py))
+- **[Figure 5: False discovery proportion](figure/Fig5/results/fig5.pdf)** (code: [Fig5.py](figure/Fig5/Fig5.py))
 
 ### Definitions
 

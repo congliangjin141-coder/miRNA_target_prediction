@@ -18,6 +18,5 @@ __pycache__/
 .ipynb_checkpoints/
 .DS_Store
 
-# PNG copies of the figures are regenerated locally; only the PDFs are tracked
+# PNG copies written by the figure scripts are not tracked (the PDFs are)
 figure/*/results/*.png
-figure/*/results/*.pdf
