@@ -1,11 +1,15 @@
 # Benchmarking miRNA Target Prediction Methods
 
+[![arXiv](https://img.shields.io/badge/arXiv-2610.33960-b31b1b.svg)](https://arxiv.org/abs/2610.33960)
+
 ## Citation
 
 If you use this code, please cite our paper:
 
-> Benchmarking miRNA Target Prediction Methods. Submitted to IEEE BIBM 2026 (under review).
-> The full citation will be added after publication.
+> Benchmarking miRNA Target Prediction Methods. arXiv preprint arXiv:2610.33960 (2026).
+> https://arxiv.org/abs/2610.33960
+
+The paper will appear in the proceedings of IEEE BIBM 2026; the IEEE Xplore link will be added once it is published.
 
 ## Contents
 
